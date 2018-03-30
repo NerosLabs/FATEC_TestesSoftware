@@ -2,6 +2,7 @@ package br.emprestimo.testeUnitario;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.fail;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -20,7 +21,6 @@ public class UC06CadastrarLivro {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		// cenario
 		livro = new Livro();
 		livro.setIsbn("121212");
 		livro.setTitulo("Engenharia de Software");
@@ -60,5 +60,23 @@ public class UC06CadastrarLivro {
 	public void CT08verificar_o_metodo_getLivro() {
 		assertEquals("teste", emprestimo.getLivro());
 	}
-	
+
+	@Test
+	public void CT09_definir_livro_null() {
+		try {
+			livro.setIsbn(null);
+			fail("deveria lançar uma exceção");
+		} catch (RuntimeException e) {
+			assertEquals("ISBN invalido", e.getMessage());
+		}
+	}
+	@Test
+	public void CT10_definir_livro_branco() {
+		try {
+			livro.setIsbn("");
+			fail("deveria lançar uma exceção");
+		} catch (RuntimeException e) {
+			assertEquals("ISBN invalido", e.getMessage());
+		}
+	}
 }

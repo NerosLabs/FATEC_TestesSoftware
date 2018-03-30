@@ -64,6 +64,8 @@ public class UC01RegistraEmprestimoDeLivro {
 	}
 
 
+	
+	//Usuario
 	@Test
 	public void CT09verificar_o_metodo_getUsuario() {
 		assertEquals(null, emprestimo.getUsuario());
@@ -141,23 +143,46 @@ public class UC01RegistraEmprestimoDeLivro {
 		usuario.setRa(null);
 		assertFalse(usr.equals(usuario));
 	}
+	@Test
+	public void CT24verificar_o_metodo_equals() {
+		Usuario usr = new Usuario();
+		usr.setNome("Joao das couves");
+		usuario.setNome(null);
+		assertFalse(usr.equals(usuario));
+	}
+	@Test
+	public void CT25verificar_o_metodo_equals() {
+		Usuario usr = new Usuario();
+		usr.setNome("Jose do Silva");
+		assertFalse(usr.equals(usuario));
+	}
+	@Test
+	public void CT26verificar_o_metodo_equals() {
+		Usuario usr = new Usuario();
+		usr.setRa("123");
+		usuario.setRa(null);
+		assertFalse(usr.equals(usuario));
+	}
+	@Test
+	public void CT27verificar_o_metodo_equals() {
+		Usuario usr = new Usuario();
+		usr.setRa("123");
+		assertFalse(usuario.equals(usr));
+	}
+	@Test
+	public void CT28verificar_o_metodo_equals() {
+		Usuario usr = new Usuario();
+		usr.setNome("123");
+		assertFalse(usuario.equals(usr));
+	}
+
+	
 	
 	@Test
-	public void CT15_definir_livro_null() {
-		try {
-			livro.setIsbn(null);
-			fail("deveria lançar uma exceção");
-		} catch (RuntimeException e) {
-			assertEquals("ISBN invalido", e.getMessage());
-		}
+	public void CT25testar_getLivro(){
+		assertFalse(emprestimo.getLivro()==null);
 	}
-	@Test
-	public void CT16_definir_livro_branco() {
-		try {
-			livro.setIsbn("");
-			fail("deveria lançar uma exceção");
-		} catch (RuntimeException e) {
-			assertEquals("ISBN invalido", e.getMessage());
-		}
-	}
+	
+	
+
 }
